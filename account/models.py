@@ -35,22 +35,23 @@ class UserRole(models.Model):
     name = models.CharField(max_length = 100)
 
 class Account(AbstractBaseUser):
-    email = models.EmailField(max_length = 100,null = False,unique = True)
-    username = models.CharField(max_length=100,null = False,unique = True)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    last_login = models.DateTimeField(auto_now_add=True)
-    is_staff = models.BooleanField(default = False)
-    is_admin = models.BooleanField(default = False)
-    is_active = models.BooleanField(default = True)
+    email        = models.EmailField(max_length = 100,null = False,unique = True)
+    username     = models.CharField(max_length=100,null = False,unique = True)
+    date_joined  = models.DateTimeField(auto_now_add=True)
+    last_login   = models.DateTimeField(auto_now_add=True)
+    is_staff     = models.BooleanField(default = False)
+    is_admin     = models.BooleanField(default = False)
+    is_active    = models.BooleanField(default = True)
     is_superuser = models.BooleanField(default = False)
-    first_name = models.CharField(max_length=100,null = False)
-    last_name = models.CharField(max_length=100,null = True)
-    type = models.ForeignKey(UserRole,null = False,on_delete = models.DO_NOTHING)
+    first_name   = models.CharField(max_length=100,null = False)
+    last_name    = models.CharField(max_length=100,null = True)
+    password     = models.CharField(max_length=30,null = False)
+    type         = models.ForeignKey(UserRole,null = False,on_delete = models.DO_NOTHING)
 
     objects = AccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','first_name']
+    REQUIRED_FIELDS = ['username','first_name','password']
 
     def has_perm(self, perm, obj = None):
         return self.is_admin
