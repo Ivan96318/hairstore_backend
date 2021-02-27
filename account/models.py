@@ -45,8 +45,8 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default = False)
     first_name   = models.CharField(max_length=100,null = False)
     last_name    = models.CharField(max_length=100,null = True)
-    password     = models.CharField(max_length=30,null = False)
-    type         = models.ForeignKey(UserRole,null = False,on_delete = models.DO_NOTHING)
+    password     = models.CharField(max_length=100,null = False)
+    type         = models.ForeignKey(UserRole,null = True,on_delete = models.DO_NOTHING)
 
     objects = AccountManager()
 

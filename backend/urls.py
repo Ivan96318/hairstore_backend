@@ -21,5 +21,6 @@ from account.views import AccountCreation
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^account/',include('account.urls')),
-    url(r'^create-user/',AccountCreation.as_view(), name="account-creation")
+    url(r'^create-user/',AccountCreation.as_view(), name="account-creation"),
+    path('', include('djoser.urls.authtoken'))
 ]
