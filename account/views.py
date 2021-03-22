@@ -7,7 +7,7 @@ from .models import Account
 
 customUser = get_user_model()
 
-# Create accounts
+# Create accounts - this is good
 class AccountCreation(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
@@ -23,6 +23,7 @@ class UserRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get_object(self):
         return self.request.user
 
+#get enlista todos los usuarios and post crea un nuevo usuario
 class CustomUserModelViewSet(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
     permission_classes = (permissions.AllowAny,)
