@@ -4,6 +4,7 @@ from django.urls import path
 from account.views import CustomUserModelViewSet,UserRetrieveUpdateDestroyAPIView
 
 router = routers.DefaultRouter()
+#get data from all users
 router.register(r'users',CustomUserModelViewSet)
 
 urlpatterns = [
