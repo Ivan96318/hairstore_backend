@@ -4,12 +4,11 @@ from django.urls import path
 from account.views import CustomUserModelViewSet,UserRetrieveUpdateDestroyAPIView
 
 router = routers.DefaultRouter()
-#get data from all users
+#get data from all users - check
 router.register(r'users',CustomUserModelViewSet)
 
 urlpatterns = [
   url(r'^api/', include(router.urls)),
-  #regresa informacion del usuarios loggeado
+  #regresa informacion del usuarios loggeado - check
   url(r'data/',UserRetrieveUpdateDestroyAPIView.as_view(), name="user-data"),
-  
 ]
