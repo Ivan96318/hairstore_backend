@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account',
     'rest_framework.authtoken',
     'corsheaders',
+    'utils'
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
+    'PAGE_SIZE': 5,
+    'DEFAULT_PAGINATION_CLASS': 'utils.pagination.CustomPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',

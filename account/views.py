@@ -4,6 +4,8 @@ from rest_framework import generics, permissions, viewsets
 from .serializers import AccountSerializer
 from django.contrib.auth import get_user_model
 from .models import Account
+from django.core.paginator import Paginator
+from utils.views import checkpaginator
 
 customUser = get_user_model()
 
@@ -33,3 +35,10 @@ class CustomUserModelViewSet(viewsets.ModelViewSet):
         instance = serializer.save()
         instance.set_password(instance.password)
         instance.save()
+
+    def get_queryset(self):
+        checkpaginator(self)
+        
+        return self.queryset
+
+
