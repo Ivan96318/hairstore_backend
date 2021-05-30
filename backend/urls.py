@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-from account.views import AccountCreation
+#from account.views import AccountCreation
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^account/',include('account.urls')),
-    url(r'^create-user/',AccountCreation.as_view(), name="account-creation"),#this is good for create 
+    #url(r'^create-user/',AccountCreation.as_view(), name="account-creation"),#this is good for create 
     path('', include('djoser.urls.authtoken'))
 ]

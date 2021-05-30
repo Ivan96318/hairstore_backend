@@ -1,11 +1,11 @@
 from django.conf.urls import url, include
 from rest_framework import routers
 from django.urls import path
-from account.views import CustomUserModelViewSet,UserRetrieveUpdateDestroyAPIView
+from account.views import AccountViewSet,UserRetrieveUpdateDestroyAPIView
 
 router = routers.DefaultRouter()
 #get data from all users - check
-router.register(r'users',CustomUserModelViewSet)
+router.register(r'users',AccountViewSet)
 
 urlpatterns = [
   url(r'^api/', include(router.urls)),
