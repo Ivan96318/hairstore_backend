@@ -46,13 +46,32 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         try:
-            user = Account.objects.create(email = request.data.get("email"),username = request.data.get("username"),is_admin = request.data.get("is_admin"),first_name = request.data.get("first_name"),last_name = request.data.get("first_name"))
+            user = Account.objects.create(email = request.data.get("email"),username = request.data.get("username"),is_admin = request.data.get("is_admin"),first_name = request.data.get("first_name"),last_name = request.data.get("last_name"))
             user.set_password(request.data.get("password"))
             user.save()
             Token.objects.create(user = user)
             return Response({'rs':'User Created Successfully','success':True})
         except Exception as error:
             return Response({'rs':'Error: {}'.format(error),'success':False})
+    
+    def update(self, request, pk):
+        try:
+            user = Account.objects.get(id = pk)
+        except Account.DoesNotExist:
+            return Response({'rs':'The user does not exist'})
+        try:
+            user.email = request.data.get("email")
+            user.username = request.data.get("username")
+            user.first_name = request.data.get("first_name")
+            user.last_name = request.data.get("last_name")
+            user.is_admin = request.data.get("is_admin")
+            user.save()
+            return Response({"rs":"User updated successfully","success":True})
+        except Exception as error:
+            return Response({"rs":"Error {}".format(error),"success":False})
+
+        
+
 
 
 
